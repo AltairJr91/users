@@ -19,46 +19,47 @@ const UsersList = () => {
   const [dateRange, setDateRange] = useState<[Date, Date]>([new Date(), new Date()]);
 
   useEffect(() => {
-    Api().get('/user')
+    fetchUsers();
+     // eslint-disable-next-line
+  }, []);
+
+  const fetchUsers = () => {
+    Api().get(search.trim() === '' ? '/user' : '/search', {
+      params: {
+        searchName: search
+      }
+    })
       .then((response) => {
-        setUsers(response.data.user);
+        setUsers(response.data.searchName || response.data.user);
       })
       .catch((error) => {
-        console.log(error);
-        
-      })
+        if (search.trim() === '') {
+          window.alert('Erro ao carregar a lista de usuários');
+        } else {
+          window.alert('Erro: Pesquisa não encontrou ou usuário não existe');
+        }
+      });
+  };
 
-  }, [])
-
-  const navigate = useNavigate();
   // Funçao para seleção de usuario na tabela por id
+  const navigate = useNavigate();
   const handleRowClick = (user: UserInterface) => {
     navigate(`/userList/${user.id}`);
   };
   //funçao para pesquisa via formulario
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    Api().get('/search', {
-      params: {
-        searchName: search
-      }
-    })
-      .then((response) => {
-        setUsers(response.data.searchName);
-      })
-      .catch((error) => {
-        window.alert("Erro: Pesquisa nao encontrou ou usuario nao existe")
-      });
+    fetchUsers();
   };
   ///////////
   // funçoes de pesquisa por data selecionada o horario de pesquisa começa a 00:01 até 23:59
   const handleCalendarChange = (newDate: Date | Date[]) => {
     if (Array.isArray(newDate) && newDate.length === 2) {
       const start = new Date(newDate[0]);
-      start.setHours(0, 1, 0, 0); 
+      start.setHours(0, 1, 0, 0);
 
       const end = new Date(newDate[1]);
-      end.setHours(23, 59, 0, 0); 
+      end.setHours(23, 59, 0, 0);
 
       setDateRange([start, end]);
 
