@@ -7,7 +7,7 @@ Este é um projeto de CRUD (Create, Read, Update, Delete) de usuários desenvolv
 - **Criar Usuário:** Permite adicionar um novo usuário ao sistema.
 - **Atualizar Usuário:** Permite modificar as informações de um usuário existente.
 - **Deletar Usuário:** Remove um usuário do sistema.
-- **PS:** A API possui uma outra forma de delete com o metodo Patch ela nao foi implementada mas esta funcional , caso voce queira apenas apagar o usuario da lista ao inves de realmente deletalo.
+- **PS:** A API possui uma outra forma de delete com o metodo Patch ela nao foi implementada mas esta funcional , caso voce queira apenas apagar o usuario da lista ao inves de realmente deleta-lo.
 - **Pesquisa por Nome:** Realiza uma busca por um usuário específico por meio do nome.
 - **Pesquisa por Data:** Filtra os usuários com base em uma data específica.
 - **Pesquisa por Ordem:** Classifica os usuários por ordem específica.
