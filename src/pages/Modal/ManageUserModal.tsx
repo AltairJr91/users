@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from "react-bootstrap";
 import Api from "../../shared/services/api/APIService";
 import UserModalProps from "../../shared/interfaces/UserModalProps";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -10,7 +11,7 @@ const UserModal = ({ selectedUser, showModal, setShowModal }: UserModalProps) =>
     const [name, setName] = useState(selectedUser.name);
     const [phone, setPhone] = useState(selectedUser.phone);
     const [email, setEmail] = useState(selectedUser.email);
-   
+    const navigate = useNavigate();
     
     const handleDelete = (userId: string) => {
         Api().delete(`/user/${userId}`)
@@ -18,6 +19,7 @@ const UserModal = ({ selectedUser, showModal, setShowModal }: UserModalProps) =>
               console.log("User Deleted Success");
               handleClose()
               window.alert('Usuário Deletado com sucesso!');
+              navigate('/userList');
             })
             .catch((error) => {
               console.log(error);
