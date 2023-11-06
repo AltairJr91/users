@@ -38,15 +38,15 @@ const SelectedUser = () => {
                 <CardBody>
                     {selectedUser && (
                         <>
-                            <CardText>Nome: {selectedUser.name}</CardText>
-                            <CardText>Email: {selectedUser.email}</CardText>
-                            <CardText>Telefone: {selectedUser.phone}</CardText>
+                            <CardText><strong>Nome:</strong> {selectedUser.name}</CardText>
+                            <CardText><strong>Email:</strong> {selectedUser.email}</CardText>
+                            <CardText><strong>Telefone:</strong> {selectedUser.phone}</CardText>
                         </>
                     )}
                 </CardBody>
                 <CardFooter>
                     <Button className="me-2" variant="primary" onClick={handleButton}>Gerenciar</Button>
-                    <Button variant="warning" onClick={()=> navigate('/userList')}>Voltar</Button>
+                    <Button variant="warning" onClick={() => navigate('/userList')}>Voltar</Button>
                 </CardFooter>
             </Card>
             {selectedUser && (
